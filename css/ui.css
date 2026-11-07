@@ -13,29 +13,11 @@ dialog{width:min(1240px,95vw);max-height:94vh;border:1px solid var(--line);borde
 /* Give the project tree the height formerly used by branding and footer. */
 .sidebar{padding-top:15px;padding-bottom:10px}.brand{margin:0 10px 12px;gap:10px}.brand-symbol{width:24px;height:26px}.brand-word{font-size:24px}.brand small{display:none}.sidebar>.side-label:not(.role-title){margin:4px 12px 5px;font-size:9px}.nav{padding:8px 12px;margin:1px 0;gap:10px;font-size:12px}.nav svg{width:16px;height:16px}.sidebar .role-title{margin:17px 9px 5px}.role-title button{height:22px;width:22px}#roles{margin-bottom:0}.backup-tools{margin-top:20px;border-top:1px solid var(--line);padding-top:14px}.backup-tools>div{padding-top:12px}.backup-tools button,.backup-tools .import{font-size:11px;margin-right:8px}.backup-tools p{font-size:10px;color:#98a3b3}button:disabled.primary,button:disabled#saveAndHandoff{background:#edf0f4;border-color:#e2e7ed;color:#a7b0bd;opacity:1;cursor:not-allowed;box-shadow:none}button:disabled.primary:hover,button:disabled#saveAndHandoff:hover{background:#edf0f4;color:#a7b0bd}@media(max-width:650px){.sidebar{padding:12px 15px 8px}.brand{margin-bottom:8px}.sidebar #roles{max-height:50vh}.sidebar .role-title{margin-top:12px}}
 
-/* GitHub Pages publishes a read-only catalog without the local Python API. */
-.read-only-catalog .nav[data-tab=saved],
-.read-only-catalog .nav[data-tab=board],
-.read-only-catalog .role-title,
-.read-only-catalog #roles,
-.read-only-catalog #roleBrief,
-.read-only-catalog #projectLabel,
+/* The public catalog keeps browser-local selection and role planning available. */
 .read-only-catalog #collaboration,
 .read-only-catalog #pullRequests,
-.read-only-catalog #exportBoard,
-.read-only-catalog #renameRole,
-.read-only-catalog .fav,
-.read-only-catalog .card-foot .add,
-.read-only-catalog .role-choice,
-.read-only-catalog .part-options,
-.read-only-catalog .selection-note,
-.read-only-catalog #saveSelection,
-.read-only-catalog #detailFav,
-.read-only-catalog #detailRoleBrief,
-.read-only-catalog .detail-info details,
 .read-only-catalog #collabDialog,
-.read-only-catalog #roleEditor,
 .read-only-catalog #handoffDialog,
-.read-only-catalog #actionDialog { display: none !important; }
-.read-only-catalog .sidebar { justify-content: flex-start; }
-.read-only-catalog .intro { margin-bottom: 28px; }
+.read-only-catalog #handoffRole,
+.read-only-catalog #saveAndHandoff { display: none !important; }
+.read-only-catalog .local-only-note { display: block; }
