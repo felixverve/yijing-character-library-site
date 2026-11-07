@@ -16,8 +16,11 @@ dialog{width:min(1240px,95vw);max-height:94vh;border:1px solid var(--line);borde
 /* The public catalog keeps browser-local selection and role planning available. */
 .read-only-catalog #collaboration,
 .read-only-catalog #pullRequests,
+.read-only-catalog .detail-info details,
 .read-only-catalog #collabDialog,
 .read-only-catalog #handoffDialog,
 .read-only-catalog #handoffRole,
 .read-only-catalog #saveAndHandoff { display: none !important; }
 .read-only-catalog .local-only-note { display: block; }
+
+
