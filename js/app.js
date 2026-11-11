@@ -52,7 +52,7 @@ $('#exportBoard').onclick=exportBoard;$('#backup').onclick=()=>download('衣境_
 $('#restore').onchange=async e=>{try{const v=validate(JSON.parse(await e.target.files[0].text()));if(!await confirmAction('导入将替换当前角色预选和收藏，建议先导出备份。继续吗？'))return;state=migrate(v);save();toast('项目备份已恢复')}catch(err){toast('导入失败：'+err.message)}finally{e.target.value=''}};
 render();
 
-$('#copyPrompt').onclick=async()=>{try{await navigator.clipboard.writeText($('#promptText').value);toast('本款提示词已复制')}catch(e){$('#promptText').focus();$('#promptText').select();toast('已选中提示词，请按 Ctrl+C 复制')}};
+$('#copyPrompt').onclick=async()=>{const field=$('#promptText'),text=field.value;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text)}else{throw Error('clipboard unavailable')}toast('提示词已复制')}catch(e){field.focus();field.select();const copied=!!document.execCommand?.('copy');if(copied)toast('提示词已复制');else toast('复制失败，请按 Ctrl+C 复制已选文字')}};
 
 let revision=0,connected=false,pending=null,pushing=null,syncError=false;
 function queueSave(){if(!connected||syncError)return;pending=JSON.parse(JSON.stringify(state));pushChanges()}
