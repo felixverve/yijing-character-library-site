@@ -41,5 +41,12 @@
   return true;
  }
  function document(item){const a=item.attributes||{};return [item.title,...(item.tags||[]),...(item.styleCategories||[]),...[a.bodyTypes,a.faceFeatures,a.hair,a.clothingStyles,a.garments,a.accessories,a.visualMood].flatMap(v=>v||[]),positive(item.promptText),...(item.promptVariants||[]).map(v=>positive(v.text))].filter(Boolean).join(' ')}
- const api={positive,effective,gender,ageGroup,constraints,passes,document};root.Retrieval=api;if(typeof module!=='undefined')module.exports=api;
+ function matchRole(role){const p=role.profile||{},m=role.matchPreferences||{};return {...role,profile:{...p,...(m.gender?{gender:m.gender}:{}),...(m.age?{age:m.age}:{}),...(m.description?{type:m.description}:{})}}}
+ function readiness(role){
+  const p=role.profile||{},description=[p.type,p.personality,p.body,p.face,p.hair,p.wardrobe,role.requirements].map(v=>String(v||'').trim()).filter(v=>v&&!/^(待确认|待补充|待设计|未知)$/.test(v)).join('；');
+  const meaningful=positive(description).replace(/成年|少年|儿童|女性|男性|女生|男生|女孩|男孩|人物|角色|\d+岁|[男女\s；;，,。]/g,'');
+  const missing=[];if(!['男','女'].includes(constraints(role).gender))missing.push('性别');if(meaningful.length<2)missing.push('造型描述');
+  return {ready:!missing.length,missing,description,gender:constraints(role).gender};
+ }
+ const api={positive,effective,gender,ageGroup,constraints,passes,document,matchRole,readiness};root.Retrieval=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
